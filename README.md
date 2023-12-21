@@ -33,7 +33,9 @@ Task Details Page:
 User Profile Page: 
 
 ERD:
-![erd for task board]
+
+
+![erd for task board](public/Screen Shot 2023-12-21 at 1.43.38 PM.png)
 User Model:
 
 Attributes: ID, Username, Email, Password (hashed), OAuthID, Profile Image
