@@ -5,27 +5,27 @@ A collaborative task management application that enables teams to efficiently or
 User stories:
 Ice Box:
 
--As a user, I want to be able to create a new task with a title, description, and due date, because it helps in organizing work efficiently.
+-As a user, I want to be able to create a new task with a title, description, and due date.
 
--As a team member, I want to be able to assign tasks to specific team members, because it ensures clear accountability.
+-As a user, I want to be able to assign tasks to specific team members,
 
--As a user, I want to receive notifications for upcoming task deadlines, so I can stay on top of my responsibilities.
+-As a user, I want to receive notifications for upcoming task deadlines,
 
 Current/MVP:
 
--As a user, I want to be able to log in using OAuth authentication, because it provides a secure and convenient way to access the application.
+-As a user, I want to be able to log in using OAuth authentication
 
--As a team member, I want to view a list of tasks assigned to me, so I can prioritize my work.
+-As a user, I want to view a list of tasks assigned to me.
 
--As a team member, I want to mark tasks as completed, so everyone in the team is aware of the progress.
+-As a user, I want to mark tasks as completed, so everyone in the team is aware of the progress.
 
--As an administrator, I want to be able to delete tasks, in case they are no longer relevant or needed.
+-As a user, I want to be able to delete tasks, in case they are no longer relevant or needed.
 
 Completed:
 
--As a user, I want to be able to edit task details, because sometimes plans change.
+-As a user, I want to be able to edit task details.
 
--As a team member, I want to see a history of task activities, so I can understand how a task progressed.
+-As a team member, I want to see a history of task activities.
 
 
 ERD:
