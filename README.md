@@ -29,7 +29,7 @@ Completed:
 
 
 ERD:
-! [erd](/Users/joshbuckley/sei/ga-code/project-2/public/Screen Shot 2023-12-21 at 1.43.38 PM.png)
+![erd](public/Projecterd.png)
 
 
 
