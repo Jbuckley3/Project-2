@@ -60,43 +60,34 @@ router.get('/login', (req, res) => {
 
 // POST -> Login
 router.post('/login', async (req, res) => {
-    // const { username, loggedIn, userId } = req.session
+    const { username, password } = req.body;
 
-    // we can pull our credentials from the req.body
-    const { username, password } = req.body
-
-    // search the db for our user
-    // since our usernames are unique, we can use that
     User.findOne({ username })
         .then(async (user) => {
-            // if the user exists
             if (user) {
-                // we compare the password they put in with the one we have stored
-                // we can easily do this with bcrypt
-                // will send either a truthy or a falsey value
-                const result = await bcrypt.compare(password, user.password)
+                const result = await bcrypt.compare(password, user.password);
 
                 if (result) {
-                    // if the pws match -> log them in and create the session
-                    req.session.username = username
-                    req.session.loggedIn = true
-                    req.session.userId = user.id
+                    req.session.username = username;
+                    req.session.loggedIn = true;
+                    req.session.userId = user.id;
 
-                    // once we're logged in, redirect to the home page
-                    res.redirect('/')
+                    console.log('Session Variables after login:', req.session);
+
+                    res.redirect('/');
                 } else {
-                    res.redirect(`/error?error=something%20wrong%20with%20credentials`)
+                    res.redirect(`/error?error=something%20wrong%20with%20credentials`);
                 }
-
             } else {
-                res.redirect(`/error`)
+                res.redirect(`/error`);
             }
         })
         .catch(err => {
-            console.log('error')
-            res.redirect(`/error?error=${err}`)
-        })
-})
+            console.log('error');
+            res.redirect(`/error?error=${err}`);
+        });
+});
+
 
 // GET -> Logout - /users/logout
 router.get('/logout', (req, res) => {

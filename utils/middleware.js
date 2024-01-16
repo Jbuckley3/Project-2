@@ -29,6 +29,17 @@ const middleware = (app) => {
             resave: false,
         })
     );
+
+    // Attach user information to res.locals for use in views
+    app.use((req, res, next) => {
+        res.locals.loggedIn = req.session.loggedIn;
+        res.locals.username = req.session.username;
+        res.locals.userId = req.session.userId;
+        next();
+    });
+
+    // Ensure the ensureLoggedIn middleware is applied after session middleware
+    app.use(ensureLoggedIn);
 };
 
 // Export ensureLoggedIn

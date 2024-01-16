@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Task = require('../models/task.js'); 
+const Task = require('../models/task.js');
 const { ensureLoggedIn } = require('../utils/middleware');
 
 // Apply ensureLoggedIn middleware to the entire router
@@ -12,16 +12,27 @@ router.get('/tasks/create', (req, res) => {
 });
 
 // Route to handle task creation
-router.post('/tasks/create', ensureLoggedIn, async (req, res) => {
-    const { title, description, dueDate } = req.body;
-    const newTask = new Task({
-        title,
-        description,
-        dueDate,
-        user: req.user.id,
-    });
-    await newTask.save();
-    res.redirect('/tasks');
+router.post('/tasks/create', async (req, res) => {
+    try {
+        // Ensure the user is logged in before proceeding
+        if (!req.session.loggedIn || !req.session.userId) {
+            return res.status(401).send('Unauthorized');
+        }
+
+        const { title, description, dueDate } = req.body;
+        const newTask = new Task({
+            title,
+            description,
+            dueDate,
+            user: req.session.userId, // Use session userId instead of req.user.id
+        });
+
+        await newTask.save();
+        res.redirect('/tasks');
+    } catch (error) {
+        console.error('Error creating task:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 // Route to render the task update form
@@ -45,8 +56,18 @@ router.post('/tasks/:id/delete', ensureLoggedIn, async (req, res) => {
 
 // Route to display a list of tasks
 router.get('/tasks', ensureLoggedIn, async (req, res) => {
-    const tasks = await Task.find({ user: req.user.id });
-    res.render('tasks/index', { tasks });
+    try {
+        // Ensure the user is logged in before proceeding
+        if (!req.session.loggedIn || !req.session.userId) {
+            return res.status(401).send('Unauthorized');
+        }
+
+        const tasks = await Task.find({ user: req.session.userId }); // Use session userId
+        res.render('tasks/index', { tasks });
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 module.exports = router;
