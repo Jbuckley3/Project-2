@@ -13,19 +13,26 @@ Ice Box:
 
 Current/MVP:
 
--As a user, I want to be able to log in using OAuth authentication
+-As a user, I want to be able to log in using OAuth authentication.
 
 -As a user, I want to view a list of tasks assigned to me.
 
--As a user, I want to mark tasks as completed, so everyone in the team is aware of the progress.
-
--As a user, I want to be able to delete tasks, in case they are no longer relevant or needed.
+-As a user, I want to be able to delete tasks.
 
 Completed:
 
 -As a user, I want to be able to edit task details.
 
 -As a team member, I want to see a history of task activities.
+
+Wireframes:
+Homepage:
+![erd](public/homepage.png)
+
+Add a task page:
+![erd](public/createTask.png)
+
+![erd](public/taskList.png)
 
 
 ERD:
